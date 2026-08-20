@@ -2,22 +2,21 @@ import { useState, useEffect, useRef } from 'react'
 
 const NAV_ITEMS = [
   { label: 'Home', id: 'hero' },
-  { label: 'Doctor', id: 'doctor' },
-  { label: 'About', id: 'about' },
-  { label: 'Treatments', id: 'treatments' },
-  { label: 'Technology', id: 'technology' },
-  { label: 'Patient Voices', id: 'testimonials' },
-  { label: 'Gallery', id: 'gallery' },
+  { label: 'Master Stylist', id: 'stylist' },
+  { label: 'Why Shankara', id: 'why-us' },
+  { label: 'Services', id: 'services' },
+  { label: 'VIP Packages', id: 'packages' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Lookbook', id: 'gallery' },
   { label: 'Contact', id: 'contact' },
 ]
 
-// All page sections in order of appearance
 const PAGE_SECTIONS = [
   'hero',
-  'doctor',
-  'about',
-  'treatments',
-  'technology',
+  'stylist',
+  'why-us',
+  'services',
+  'packages',
   'experience',
   'testimonials',
   'gallery',
@@ -46,7 +45,7 @@ export default function Navbar() {
     }
   }, [mobileOpen])
 
-  // Live Scroll Spy: High-Performance requestAnimationFrame Scroll Spy
+  // Live Scroll Spy with rAF throttle
   useEffect(() => {
     let ticking = false
 
@@ -54,21 +53,18 @@ export default function Navbar() {
       const scrollY = window.scrollY
       setScrolled(scrollY > 40)
 
-      // If at top
       if (scrollY < 180) {
         setActiveSection('hero')
         ticking = false
         return
       }
 
-      // If near bottom of page, activate contact
       if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 120) {
         setActiveSection('contact')
         ticking = false
         return
       }
 
-      // Check each section in order
       const navOffset = 180
       let currentSection = 'hero'
 
@@ -82,7 +78,7 @@ export default function Navbar() {
         }
       }
 
-      if (currentSection === 'experience') currentSection = 'technology'
+      if (currentSection === 'testimonials') currentSection = 'packages'
       if (currentSection === 'faq') currentSection = 'gallery'
 
       setActiveSection(currentSection)
@@ -97,11 +93,11 @@ export default function Navbar() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    updateScrollState() // initial check
+    updateScrollState()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Update gliding highlighter position based on activeSection
+  // Dynamic active pill indicator
   useEffect(() => {
     if (!navListRef.current) return
     const activeItemEl = navListRef.current.querySelector(`[data-nav-id="${activeSection}"]`)
@@ -135,22 +131,29 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar-light${scrolled ? ' scrolled' : ''}`}>
+      <nav className={`navbar-luxe${scrolled ? ' scrolled' : ''}`}>
         <div className="container">
           <div className="navbar-inner">
-            {/* Official Clinic Brand Logo */}
+            {/* Brand Logo */}
             <a href="#" className="navbar-logo" onClick={(e) => { e.preventDefault(); scrollTo('hero') }}>
-              <img src="/logo.png" alt="Shankara Dental Clinic" className="navbar-brand-img" />
+              <div className="navbar-logo-emblem">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9" />
+                  <path d="M16 16l6-6" />
+                  <path d="m8 8 6-6" />
+                  <path d="m9 7 8 8" />
+                  <path d="m21 11-8-8" />
+                </svg>
+              </div>
               <div className="navbar-logo-text">
-                <span className="navbar-logo-name-light">SHANKARA</span>
-                <span className="navbar-logo-sub-light">Dental Clinic</span>
+                <span className="navbar-logo-brand">SHANKARA</span>
+                <span className="navbar-logo-sub">Men&apos;s Salon &amp; Lounge</span>
               </div>
             </a>
 
-            {/* Desktop Navigation with Live Gliding Highlighter */}
+            {/* Desktop Navigation Links */}
             <div className="navbar-nav-container">
-              <ul className="navbar-links-light" ref={navListRef}>
-                {/* Gliding Active Pill Highlighter */}
+              <ul className="navbar-links-luxe" ref={navListRef}>
                 <div
                   className="nav-gliding-pill"
                   style={{
@@ -184,7 +187,7 @@ export default function Navbar() {
               </ul>
             </div>
 
-            {/* Right Book Appointment CTA (Highlights when in appointment section) */}
+            {/* Right Reserve VIP CTA */}
             <a
               href="#appointment"
               className={`navbar-cta ${activeSection === 'appointment' ? 'active-cta' : ''}`}
@@ -193,7 +196,7 @@ export default function Navbar() {
                 scrollTo('appointment')
               }}
             >
-              <span>Book Appointment</span>
+              <span>Reserve VIP Slot</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
@@ -203,7 +206,7 @@ export default function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               type="button"
-              className="navbar-hamburger-light"
+              className="navbar-hamburger-luxe"
               onClick={() => setMobileOpen(true)}
               aria-label="Open navigation menu"
             >
@@ -213,18 +216,18 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Fullscreen Menu Drawer */}
-      <div
-        className={`mobile-menu${mobileOpen ? ' open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile Navigation"
-      >
-        {/* Top Header inside Mobile Menu */}
+      {/* Mobile Drawer */}
+      <div className={`mobile-menu${mobileOpen ? ' open' : ''}`} role="dialog" aria-modal="true">
         <div className="mobile-menu-header">
           <div className="mobile-menu-brand">
-            <img src="/logo.png" alt="Shankara Dental Clinic" className="mobile-brand-img" />
-            <span className="navbar-logo-name-light" style={{ fontSize: '16px' }}>SHANKARA DENTAL</span>
+            <div className="navbar-logo-emblem" style={{ width: '36px', height: '36px' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9" />
+                <path d="M16 16l6-6" />
+                <path d="m8 8 6-6" />
+              </svg>
+            </div>
+            <span className="navbar-logo-brand" style={{ fontSize: '16px' }}>SHANKARA SALON</span>
           </div>
 
           <button
@@ -240,7 +243,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Links List */}
         <div className="mobile-menu-body">
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.id
@@ -254,24 +256,23 @@ export default function Navbar() {
                   scrollTo(item.id)
                 }}
               >
-                {isActive && <span className="mobile-active-indicator" />}
+                {isActive && <span className="nav-active-dot" />}
                 <span>{item.label}</span>
               </a>
             )
           })}
         </div>
 
-        {/* Bottom CTA */}
         <div className="mobile-menu-footer">
           <a
             href="#appointment"
-            className={`mobile-cta-btn ${activeSection === 'appointment' ? 'active' : ''}`}
+            className="mobile-cta-btn"
             onClick={(e) => {
               e.preventDefault()
               scrollTo('appointment')
             }}
           >
-            <span>Book Appointment</span>
+            <span>Reserve VIP Slot</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />

@@ -1,125 +1,104 @@
-import { useEffect, useRef } from 'react'
-
 export default function Hero() {
-  const bgRef = useRef(null)
-
-  useEffect(() => {
-    // Parallax
-    const handleScroll = () => {
-      if (bgRef.current) {
-        const y = window.scrollY * 0.2
-        bgRef.current.style.transform = `scale(1.05) translateY(${y}px)`
-      }
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    setTimeout(() => bgRef.current?.classList.add('loaded'), 100)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    const el = document.getElementById(id)
+    if (el) {
+      const topOffset = 80
+      const elementPosition = el.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - topOffset
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+    }
   }
 
   return (
-    <section className="hero-light" id="hero">
-      {/* 3D Glowing Ambient Orbs */}
-      <div className="hero-orb-light hero-orb-light-1" />
-      <div className="hero-orb-light hero-orb-light-2" />
-      
-      {/* Clinic Background Image with High Visibility */}
-      <div className="hero-bg-light" ref={bgRef} style={{ backgroundImage: "url('/images/hero_new.jpg')" }} />
-      <div className="hero-overlay-light" />
-      <div className="hero-grid-lines-light" />
+    <section className="hero-luxe" id="hero">
+      {/* High-Definition Luxury Salon Background */}
+      <div
+        className="hero-bg-luxe"
+        style={{ backgroundImage: "url('/images/hero_salon.jpg')" }}
+      />
+      <div className="hero-overlay-luxe" />
 
       <div className="container">
-        <div className="hero-inner-light">
-          {/* LEFT */}
-          <div className="hero-left">
-            <div className="hero-eyebrow-badge">
-              <span className="hero-eyebrow-dot" />
-              <span>Shankara Dental Clinic · Dharmapuri</span>
-            </div>
+        <div className="hero-inner-luxe">
+          {/* Left Text Card */}
+          <div className="hero-left-luxe reveal">
+            <span className="section-eyebrow">
+              ★ Dharmapuri&apos;s Premier Men&apos;s Grooming Lounge
+            </span>
 
-            <h1 className="hero-title-light">
-              A Better Smile<br />
-              Begins With<br />
-              <span className="hero-title-gradient">Better Care.</span>
+            <h1 className="hero-title-luxe">
+              Bespoke Hair Architecture. <br />
+              <span className="gold-gradient-text">Royal Luxury Styling.</span>
             </h1>
 
-            <p className="hero-sub-light">
-              Advanced dental care with a human touch — designed around your
-              comfort, confidence and long-term oral health.
+            <p className="hero-sub-luxe">
+              Precision haircuts, artisanal hot towel straight-razor shaves, Kérastase scalp therapies, and 24K gold facials tailored for distinguished gentlemen.
             </p>
 
-            <div className="hero-actions">
+            <div className="hero-actions-luxe">
               <a
                 href="#appointment"
                 className="btn-primary"
                 onClick={(e) => { e.preventDefault(); scrollTo('appointment') }}
               >
-                <span>Book an Appointment</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <span>Reserve VIP Slot</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </a>
+
               <a
-                href="#treatments"
-                className="btn-outline-sky"
-                onClick={(e) => { e.preventDefault(); scrollTo('treatments') }}
+                href="#services"
+                className="btn-secondary"
+                onClick={(e) => { e.preventDefault(); scrollTo('services') }}
               >
-                <span>Explore Treatments</span>
+                <span>Explore Service Menu</span>
               </a>
             </div>
           </div>
 
-          {/* RIGHT - 3D Doctor Scene with Circular Portrait */}
-          <div className="hero-right">
-            <div className="hero-doctor-scene">
-              {/* 3D Orbiting Rings & Glow Dots */}
-              <div className="doctor-orbit-ring-light" />
-              <div className="doctor-orbit-dot-light" />
-              <div className="doctor-orbit-dot-light-2" />
+          {/* Right Master Stylist Scene */}
+          <div className="hero-right-luxe reveal reveal-delay-1">
+            <div className="hero-stylist-scene">
+              <div className="orbit-ring-gold" />
 
-              {/* Round Circular Doctor Portrait Frame */}
-              <div className="hero-doctor-circle-frame">
+              {/* Master Stylist Circle Frame */}
+              <div className="hero-stylist-circle-frame">
                 <img
-                  src="/images/doctor.jpg"
-                  alt="Dr. S. Manimozhi — Shankara Dental Clinic"
-                  className="hero-doctor-round-img"
+                  src="/images/master_stylist.jpg"
+                  alt="Master Hair Stylist & Grooming Director — Shankara Men's Salon"
+                  className="hero-stylist-round-img"
                   loading="eager"
                 />
               </div>
 
-              {/* 3D Floating White Glass Card */}
-              <div className="hero-float-card-light">
-                <div className="hero-float-card-top-light">Your Smile</div>
-                <div className="hero-float-card-title-light">Our Expertise.</div>
-                <div className="hero-float-card-sub-light">Dr. S. Manimozhi, B.D.S.</div>
-              </div>
-
-              {/* 3D Floating White Practice Badge */}
-              <div className="hero-badge-light">
-                <div className="hero-badge-icon-box-light">
+              {/* Floating Gold Feature Badge */}
+              <div className="hero-badge-gold">
+                <div className="badge-gold-icon">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <path d="m9 12 2 2 4-4" />
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                   </svg>
                 </div>
-                <div className="hero-badge-text-light">
-                  <strong>Verified Dental Practice</strong>
-                  <span>Pennagaram Rd, Dharmapuri</span>
+                <div>
+                  <strong style={{ color: 'var(--white)', fontSize: '13px', display: 'block' }}>Master Hair Artisan</strong>
+                  <span style={{ color: 'var(--gold-primary)', fontSize: '11px', fontWeight: '700' }}>14+ Years International Mastery</span>
                 </div>
+              </div>
+
+              {/* Floating Private Suite Card */}
+              <div className="hero-float-card-gold">
+                <div style={{ fontSize: '11px', fontWeight: '800', color: 'var(--gold-primary)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+                  The Gentleman&apos;s Suite
+                </div>
+                <div style={{ fontSize: '15px', fontWeight: '700', color: 'var(--white)', marginTop: '2px' }}>
+                  Takara Belmont Recliners
+                </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Private Sound-Proof Cabins</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="hero-scroll-light">
-        <span>Scroll to explore</span>
-        <div className="hero-scroll-line-light" />
       </div>
     </section>
   )

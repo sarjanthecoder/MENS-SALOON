@@ -1,67 +1,62 @@
-import { useState } from 'react'
-
-const GALLERY_ITEMS = [
-  { img: '/images/hero_new.jpg', label: 'Reception Lounge' },
-  { img: '/images/patient_comfort.jpg', label: 'Private Operatory' },
-  { img: '/images/tech_bg.jpg', label: 'Digital 3D Diagnostics' },
-  { img: '/images/treatment_crowns.jpg', label: 'Restorative Suite' },
-  { img: '/images/treatment_rct.jpg', label: 'Endodontic Care' },
-  { img: '/images/treatment_pediatric.jpg', label: 'Pediatric Clinic' },
-]
-
 export default function Gallery() {
-  const [lightboxImg, setLightboxImg] = useState(null)
+  const LOOKS = [
+    {
+      img: '/images/service_haircut.jpg',
+      tag: 'Hair Architecture',
+      title: 'Precision Scissor Fade & Textured Crop',
+    },
+    {
+      img: '/images/service_shave.jpg',
+      tag: 'Beard Sculpting',
+      title: 'Royal Sandalwood Hot Towel Shave',
+    },
+    {
+      img: '/images/service_wedding.jpg',
+      tag: 'Wedding Styling',
+      title: 'Grand Groom Bespoke Makeover',
+    },
+    {
+      img: '/images/service_spa.jpg',
+      tag: 'Scalp Therapy',
+      title: 'Kérastase Micro-Mist Hair Spa',
+    },
+    {
+      img: '/images/service_facial.jpg',
+      tag: 'Skin Wellness',
+      title: '24K Gold & Volcanic Detan Facial',
+    },
+    {
+      img: '/images/hero_salon.jpg',
+      tag: 'Lounge Interior',
+      title: 'Private VIP Grooming Suites',
+    },
+  ]
 
   return (
     <section className="gallery-section" id="gallery">
       <div className="container">
-        <span className="section-eyebrow">Visual Tour</span>
-        <h2 className="gallery-title">Inside Shankara Dental Clinic.</h2>
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }} className="reveal">
+          <span className="section-eyebrow">The Lookbook</span>
+          <h2 className="section-title">
+            A Glimpse of Mastery &amp; <br />
+            <span className="gold-gradient-text">Refined Transformations.</span>
+          </h2>
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            Explore our signature styles, grooming craftsmanship, and luxurious salon interiors.
+          </p>
+        </div>
 
-        <div className="gallery-grid">
-          {GALLERY_ITEMS.map((item, idx) => (
-            <div
-              key={idx}
-              className="gallery-item"
-              onClick={() => setLightboxImg(item.img)}
-              role="button"
-              tabIndex={0}
-              aria-label={`View ${item.label}`}
-              onKeyDown={(e) => { if (e.key === 'Enter') setLightboxImg(item.img) }}
-            >
-              <img src={item.img} alt={item.label} loading="lazy" />
-              <div className="gallery-item-overlay">
-                <div className="gallery-item-overlay-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    <line x1="11" y1="8" x2="11" y2="14" />
-                    <line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                </div>
-                <span className="gallery-item-overlay-label">{item.label}</span>
+        <div className="lookbook-grid">
+          {LOOKS.map((item, idx) => (
+            <div key={idx} className={`lookbook-item reveal reveal-delay-${(idx % 3) + 1}`}>
+              <img src={item.img} alt={item.title} loading="lazy" />
+              <div className="lookbook-overlay">
+                <span className="lookbook-tag">{item.tag}</span>
+                <h3 className="lookbook-title">{item.title}</h3>
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Lightbox Modal */}
-      <div
-        className={`lightbox ${lightboxImg ? 'open' : ''}`}
-        onClick={() => setLightboxImg(null)}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Image preview"
-      >
-        <button
-          className="lightbox-close"
-          onClick={() => setLightboxImg(null)}
-          aria-label="Close image preview"
-        >
-          ✕
-        </button>
-        {lightboxImg && <img src={lightboxImg} alt="Enlarged view" onClick={(e) => e.stopPropagation()} />}
       </div>
     </section>
   )

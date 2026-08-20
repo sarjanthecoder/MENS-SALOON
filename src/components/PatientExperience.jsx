@@ -1,134 +1,72 @@
-import { useEffect, useRef } from 'react'
-
-function useReveal() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.querySelectorAll('.reveal').forEach(e => e.classList.add('visible'))
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return ref
-}
-
-const EXPERIENCE_POINTS = [
-  {
-    num: '01',
-    title: 'Comfortable Visits',
-    desc: 'A calm and welcoming environment designed to make every visit relaxed and stress-free — from the moment you walk in.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" stroke="#0ea5e9" strokeWidth="2.5" />
-      </svg>
-    ),
-  },
-  {
-    num: '02',
-    title: 'Clear Communication',
-    desc: 'Understand your treatment fully before it begins. We explain every step, every option, and every outcome clearly.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      </svg>
-    ),
-  },
-  {
-    num: '03',
-    title: 'Personal Attention',
-    desc: 'Every patient receives focused, unhurried care. Your dental health and comfort always come first.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    ),
-  },
-]
-
 export default function PatientExperience() {
-  const ref = useReveal()
+  const scrollToBooking = () => {
+    document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section className="patient-section-premium" id="experience" ref={ref}>
+    <section className="experience-section" id="experience">
       <div className="container">
-        <div className="patient-grid-premium">
-          {/* Left Column: Full-Height Balanced Visual Card */}
-          <div className="patient-showcase-column reveal">
-            <div className="patient-curved-frame-full">
-              <img
-                src="/images/patient_comfort.jpg"
-                alt="Gentle patient care and consultation at Shankara Dental Clinic"
-                className="patient-full-img"
-                loading="lazy"
-              />
-              <div className="patient-overlay-glow" />
-
-              {/* Top Floating Trust Pill */}
-              <div className="patient-top-pill">
-                <span className="patient-top-star">★</span>
-                <span>Rated for Gentle Dentistry in Dharmapuri</span>
-              </div>
-
-              {/* Bottom Floating Satisfaction Badge */}
-              <div className="patient-floating-stat">
-                <div className="patient-stat-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="patient-stat-val">99.8%</div>
-                  <div className="patient-stat-sub">Patient Comfort Satisfaction</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Clinical Trust Strip */}
-            <div className="patient-trust-strip">
-              <div className="patient-trust-item">
-                <span className="trust-dot-green" />
-                <span>100% Sterile Operatory</span>
-              </div>
-              <div className="patient-trust-item">
-                <span className="trust-dot-blue" />
-                <span>Zero-Anxiety Environment</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content Column */}
-          <div className="patient-content-column">
-            <span className="section-eyebrow reveal">Patient-First Philosophy</span>
-            <h2 className="patient-headline-premium reveal reveal-delay-1">
-              Designed Around <span className="text-gradient-sky">Your Comfort.</span>
+        <div className="experience-layout">
+          {/* Left Text Column */}
+          <div className="reveal">
+            <span className="section-eyebrow">The VIP Experience</span>
+            <h2 className="section-title">
+              A Private Sanctuary for the <br />
+              <span className="gold-gradient-text">Discerning Gentleman.</span>
             </h2>
-            <p className="patient-sub-text reveal reveal-delay-2">
-              We eliminate dental anxiety through gentle techniques, unhurried appointments, and clear transparent communication at every step.
+
+            <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.75', marginBottom: '24px' }}>
+              Step out of the city rush and immerse yourself in an atmosphere of refined tranquility. Our private suites feature soundproof acoustic architecture, ambient lighting, and bespoke leather seating.
             </p>
 
-            <div className="patient-points-stack">
-              {EXPERIENCE_POINTS.map((pt, i) => (
-                <div className="patient-point-card-premium reveal" style={{ transitionDelay: `${i * 0.1}s` }} key={pt.num}>
-                  <div className="patient-point-num-glow">{pt.num}</div>
-                  <div className="patient-point-body">
-                    <div className="patient-point-header">
-                      <div className="patient-point-icon-box">{pt.icon}</div>
-                      <h3 className="patient-point-title-premium">{pt.title}</h3>
-                    </div>
-                    <p className="patient-point-desc-premium">{pt.desc}</p>
-                  </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid var(--gold-border)', display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', color: 'var(--gold-primary)' }}>
+                  ✓
                 </div>
-              ))}
+                <div>
+                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Zero Waiting Time Guarantee</strong>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Your reserved private suite is prepped and waiting prior to your arrival</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid var(--gold-border)', display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', color: 'var(--gold-primary)' }}>
+                  ✓
+                </div>
+                <div>
+                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Complimentary Beverage Bar</strong>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Freshly roasted single-origin espresso, gourmet teas, and refreshments</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(212, 175, 55, 0.15)', border: '1px solid var(--gold-border)', display: 'flex', alignItems: 'center', justifySelf: 'center', justifyContent: 'center', color: 'var(--gold-primary)' }}>
+                  ✓
+                </div>
+                <div>
+                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Strict Sterilization & Single-Use Blades</strong>
+                  <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Medical-grade autoclaved tools and sealed Japanese straight razor blades</span>
+                </div>
+              </div>
             </div>
+
+            <a
+              href="#appointment"
+              className="btn-primary"
+              onClick={(e) => { e.preventDefault(); scrollToBooking() }}
+            >
+              <span>Book Your Private Suite</span>
+            </a>
+          </div>
+
+          {/* Right Lounge Image */}
+          <div className="experience-img-box reveal reveal-delay-1">
+            <img
+              src="/images/lounge_interior.jpg"
+              alt="Shankara Luxury Men's Salon VIP Lounge"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>

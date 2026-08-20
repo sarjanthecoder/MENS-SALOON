@@ -1,168 +1,115 @@
-import { useEffect, useRef } from 'react'
-
-function useReveal() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const els = el.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          els.forEach(e => e.classList.add('visible'))
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.08 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-  return ref
-}
-
-const TREATMENTS = [
-  {
-    name: 'General Dental Check-up',
-    desc: 'Comprehensive visual oral examination and digital diagnosis to detect early concerns and safeguard oral wellness.',
-    img: '/images/treatment_general.jpg',
-    tag: 'Preventive',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Teeth Cleaning & Scaling',
-    desc: 'Advanced ultrasonic scaling and enamel polishing to eliminate stubborn plaque, tartar, and surface stains.',
-    img: '/images/treatment_cleaning.jpg',
-    tag: 'Hygiene',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Root Canal Treatment (RCT)',
-    desc: 'Single-sitting and multi-step endodontic therapy with digital apex locators to relieve severe toothache and preserve natural teeth.',
-    img: '/images/treatment_rct.jpg',
-    tag: 'Endodontics',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Crowns & Dental Bridges',
-    desc: 'High-strength monolithic zirconia and ceramic crowns crafted to restore natural chewing bite and seamless aesthetics.',
-    img: '/images/treatment_crowns.jpg',
-    tag: 'Restorative',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Tooth-Coloured Fillings',
-    desc: 'Biocompatible composite resin fillings matched exactly to your natural tooth shade for imperceptible restorations.',
-    img: '/images/treatment_fillings.jpg',
-    tag: 'Aesthetic',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m18 2 4 4-14 14H4v-4L18 2z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Cosmetic Teeth Whitening',
-    desc: 'In-office clinical brightening treatment that safely removes years of coffee and food discoloration for a glowing smile.',
-    img: '/images/treatment_cosmetic.jpg',
-    tag: 'Cosmetic',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="5" />
-        <line x1="12" y1="1" x2="12" y2="3" />
-        <line x1="12" y1="21" x2="12" y2="23" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Pediatric Dental Care',
-    desc: 'Gentle, reassuring dentistry specially tailored for children to cultivate healthy oral habits and fear-free clinic visits.',
-    img: '/images/treatment_pediatric.jpg',
-    tag: 'Pediatric',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Dentures (Full & Partial)',
-    desc: 'Precision-fitted removable dentures and flexible partial prosthetics designed for optimal chewing comfort and support.',
-    img: '/images/treatment_dentures.jpg',
-    tag: 'Prosthetics',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-      </svg>
-    ),
-  },
-]
-
 export default function TreatmentSection() {
-  const ref = useReveal()
+  const SERVICES = [
+    {
+      id: 'haircut',
+      title: 'Bespoke Hair Architecture & Styling',
+      duration: '45 mins',
+      price: '₹750',
+      desc: 'Face-geometry consultation, precision scissor sculpting, skin-fade detailing, invigorating hair wash, and matte clay finish.',
+      img: '/images/service_haircut.jpg',
+    },
+    {
+      id: 'shave',
+      title: 'Royal Hot Towel Straight-Razor Shave',
+      duration: '40 mins',
+      price: '₹550',
+      desc: 'Pre-shave sandalwood essential oils, steaming herbal hot towels, traditional straight-razor detailing, and cold splash balm.',
+      img: '/images/service_shave.jpg',
+    },
+    {
+      id: 'spa',
+      title: 'Kérastase Scalp Detox & Hair Spa',
+      duration: '60 mins',
+      price: '₹1,450',
+      desc: 'Micro-mist therapeutic steam, deep scalp exfoliation, anti-dandruff / anti-hairfall serum infusion, and head massage.',
+      img: '/images/service_spa.jpg',
+    },
+    {
+      id: 'facial',
+      title: '24K Gold & Charcoal Detan Facial',
+      duration: '60 mins',
+      price: '₹1,850',
+      desc: 'Ultrasonic pore cleansing, volcanic ash detan treatment, 24K gold active elixir massage, and calming cryogenic ice globe therapy.',
+      img: '/images/service_facial.jpg',
+    },
+    {
+      id: 'massage',
+      title: 'Deep Tissue Head & Neck Acupressure',
+      duration: '35 mins',
+      price: '₹650',
+      desc: 'Stress-melting acupressure points on scalp, temples, and shoulders with warm organic argan and almond herbal oils.',
+      img: '/images/service_massage.jpg',
+    },
+    {
+      id: 'groom',
+      title: 'The Grand Groom Wedding Royale',
+      duration: '180 mins',
+      price: '₹4,999',
+      desc: 'Complete all-in-one pre-wedding transformation: Hair architecture, royal beard detailing, gold facial, hair spa, manicure & styling.',
+      img: '/images/service_wedding.jpg',
+    },
+    {
+      id: 'manicure',
+      title: 'Gentleman’s Royal Hand & Foot Spa',
+      duration: '50 mins',
+      price: '₹1,150',
+      desc: 'Warm copper bowl botanical soak, dead-skin buffing, nail grooming, dead sea salt scrub, and relaxing foot acupressure.',
+      img: '/images/service_mani_pedi.jpg',
+    },
+    {
+      id: 'color',
+      title: 'Ammonia-Free Grey Blending & Color',
+      duration: '45 mins',
+      price: '₹950',
+      desc: 'Discreet, natural grey camouflage blending for hair and beard using dermatologically safe organic Italian dyes.',
+      img: '/images/service_color.jpg',
+    },
+  ]
+
+  const scrollToBooking = () => {
+    document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section className="treatments-section" id="treatments" ref={ref}>
+    <section className="services-luxe-section" id="services">
       <div className="container">
-        <div style={{ maxWidth: '640px', marginBottom: '50px' }}>
-          <span className="section-eyebrow reveal">Clinical Services</span>
-          <h2 className="treatments-title reveal reveal-delay-1" style={{ marginBottom: '14px' }}>
-            Comprehensive Dental Care.
+        <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }} className="reveal">
+          <span className="section-eyebrow">The Service Catalog</span>
+          <h2 className="section-title">
+            Signature Grooming &amp; <br />
+            <span className="gold-gradient-text">Artisanal Spa Rituals.</span>
           </h2>
-          <p style={{ color: 'var(--gray-700)', fontSize: '16px', lineHeight: '1.6' }} className="reveal reveal-delay-2">
-            Every procedure is performed with strict sterilization, modern instrumentation, and a gentle patient-first approach.
+          <p className="section-subtitle" style={{ margin: '0 auto' }}>
+            Each service is executed with surgical precision using imported global formulations and sanitized single-use tools.
           </p>
         </div>
 
-        <div className="treatments-grid">
-          {TREATMENTS.map((t, i) => (
-            <div
-              className="treatment-card reveal tilt-card"
-              style={{ transitionDelay: `${(i % 4) * 0.1}s` }}
-              key={t.name}
-            >
-              <div className="treatment-img-wrap">
-                <img src={t.img} alt={t.name} loading="lazy" />
-                <div className="treatment-img-overlay" />
-                <div className="treatment-icon-badge">{t.icon}</div>
+        <div className="services-grid">
+          {SERVICES.map((srv, idx) => (
+            <div key={srv.id} className={`service-card reveal reveal-delay-${(idx % 3) + 1}`}>
+              <div className="service-img-wrap">
+                <img src={srv.img} alt={srv.title} loading="lazy" />
+                <span className="service-duration-badge">{srv.duration}</span>
               </div>
-              <div className="treatment-card-body">
-                <div className="why-tag-pill" style={{ marginBottom: '8px' }}>{t.tag}</div>
-                <h3 className="treatment-name">{t.name}</h3>
-                <p className="treatment-desc">{t.desc}</p>
-                <a
-                  href="#appointment"
-                  className="treatment-arrow"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                >
-                  <span>Book Consultation</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </a>
+
+              <div className="service-body">
+                <h3 className="service-title">{srv.title}</h3>
+                <p className="service-desc">{srv.desc}</p>
+
+                <div className="service-footer">
+                  <span className="service-price">{srv.price}</span>
+                  <a
+                    href="#appointment"
+                    className="service-book-link"
+                    onClick={(e) => { e.preventDefault(); scrollToBooking() }}
+                  >
+                    <span>Reserve Slot</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           ))}

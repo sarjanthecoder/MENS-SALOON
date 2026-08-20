@@ -1,148 +1,75 @@
-import { useEffect, useRef } from 'react'
-
-function useReveal(threshold = 0.15) {
-  const ref = useRef(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { el.classList.add('visible'); observer.disconnect() } },
-      { threshold }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [threshold])
-  return ref
-}
-
-const DOCTOR_PILLARS = [
-  {
-    label: 'Specialized Care',
-    desc: 'Advanced endodontics & surgical precision',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Patient-Centered',
-    desc: 'Personalized treatment with gentle care',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <polyline points="16 11 18 13 22 9" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Precision Focus',
-    desc: 'Accurate diagnostics & aesthetic results',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-        <circle cx="12" cy="12" r="2" />
-      </svg>
-    ),
-  },
-]
-
 export default function DoctorSection() {
-  const ref = useReveal()
+  const scrollTo = (id) => {
+    const el = document.getElementById(id)
+    if (el) {
+      const topOffset = 80
+      const elementPosition = el.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - topOffset
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+    }
+  }
 
   return (
-    <section className="doctor-section" id="doctor">
+    <section className="stylist-section" id="stylist">
       <div className="container">
-        <div className="doctor-grid" ref={ref}>
-          {/* Round Doctor Image Composition */}
-          <div className="doctor-image-wrap reveal">
-            <div className="doctor-round-wrapper">
-              <div className="doctor-orbit-ring-subtle" />
-              <div className="doctor-round-frame">
-                <img
-                  src="/images/doctor.jpg"
-                  alt="Dr. S. Manimozhi, Dental Surgeon — Shankara Dental Clinic"
-                  className="doctor-round-img"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Floating Verified Badge */}
-              <div className="doctor-round-badge">
-                <div className="doctor-badge-name">Dr. S. Manimozhi</div>
-                <div className="doctor-badge-title">B.D.S., FCE · Dental Surgeon</div>
-              </div>
+        <div className="stylist-grid">
+          {/* Left Master Stylist Portrait */}
+          <div className="stylist-portrait-wrap reveal">
+            <div className="stylist-portrait-circle">
+              <img
+                src="/images/master_stylist.jpg"
+                alt="Shankara Master Grooming Director"
+                loading="lazy"
+              />
             </div>
           </div>
 
-          {/* Content */}
-          <div className="doctor-content">
-            <span className="section-eyebrow reveal">Meet Your Dentist</span>
-
-            <h2 className="doctor-quote reveal reveal-delay-1">
-              Focused on <em>precise</em> and<br />
-              personalized dental<br />
-              experiences.
+          {/* Right Stylist Philosophy & Bio */}
+          <div className="stylist-info reveal reveal-delay-1">
+            <span className="section-eyebrow">Creative Direction &amp; Artistry</span>
+            <h2 className="section-title">
+              Crafted for Men Who Demand <br />
+              <span className="gold-gradient-text">Uncompromised Distinction.</span>
             </h2>
 
-            <p className="doctor-desc reveal reveal-delay-2">
-              "At Shankara Dental Clinic, every patient is treated as an individual — with
-              their concerns heard, their comfort prioritized, and their smile carefully cared for."
+            <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.75', marginBottom: '18px' }}>
+              At Shankara Men&apos;s Salon, grooming is not merely a service—it is a bespoke discipline of facial aesthetics, head shape architecture, and rejuvenating wellness.
             </p>
 
-            <div className="doctor-quals reveal reveal-delay-2">
-              <div className="doctor-qual-item">
-                <span className="doctor-qual-dot" />
-                Bachelor of Dental Surgery (B.D.S.)
+            <p style={{ color: 'var(--text-muted)', fontSize: '14.5px', lineHeight: '1.7', marginBottom: '28px' }}>
+              Trained under global masters in London and Milan, our Creative Director brings over 14 years of specialized expertise in straight-razor detailing, skin-fade geometry, and luxury groom transformations.
+            </p>
+
+            {/* Credential Metrics Grid */}
+            <div className="stylist-creds-grid">
+              <div className="stylist-cred-card">
+                <div className="stylist-cred-val">14+</div>
+                <div className="stylist-cred-lbl">Years Master Craftsmanship</div>
               </div>
-              <div className="doctor-qual-item">
-                <span className="doctor-qual-dot" />
-                FCE — Fellowship in Clinical Endodontics
+
+              <div className="stylist-cred-card">
+                <div className="stylist-cred-val">15,000+</div>
+                <div className="stylist-cred-lbl">Bespoke Haircuts &amp; Shaves</div>
               </div>
-              <div className="doctor-qual-item">
-                <span className="doctor-qual-dot" />
-                Registered Dental Surgeon, Tamil Nadu
+
+              <div className="stylist-cred-card">
+                <div className="stylist-cred-val">100%</div>
+                <div className="stylist-cred-lbl">Imported Organic Formulations</div>
+              </div>
+
+              <div className="stylist-cred-card">
+                <div className="stylist-cred-val">4.98 ★</div>
+                <div className="stylist-cred-lbl">Rated Luxury Men&apos;s Lounge</div>
               </div>
             </div>
 
-            <div className="doctor-pillars reveal reveal-delay-3">
-              {DOCTOR_PILLARS.map(({ label, desc, icon }) => (
-                <div
-                  className="doctor-pillar tilt-card"
-                  key={label}
-                  onMouseMove={(e) => {
-                    const card = e.currentTarget
-                    const rect = card.getBoundingClientRect()
-                    const x = e.clientX - rect.left - rect.width / 2
-                    const y = e.clientY - rect.top - rect.height / 2
-                    card.style.transform = `perspective(600px) rotateX(${(-y / rect.height) * 12}deg) rotateY(${(x / rect.width) * 12}deg) translateY(-6px)`
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) translateY(0px)'
-                  }}
-                >
-                  <div className="doctor-pillar-icon-box">{icon}</div>
-                  <div className="doctor-pillar-label">{label}</div>
-                  <div className="doctor-pillar-desc">{desc}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="reveal reveal-delay-4">
-              <a
-                href="#appointment"
-                className="btn-primary"
-                onClick={(e) => { e.preventDefault(); document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' }) }}
-              >
-                <span>Book a Consultation</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '4px' }}>
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </a>
-            </div>
+            <a
+              href="#appointment"
+              className="btn-primary"
+              onClick={(e) => { e.preventDefault(); scrollTo('appointment') }}
+            >
+              <span>Consult with Master Stylist</span>
+            </a>
           </div>
         </div>
       </div>
