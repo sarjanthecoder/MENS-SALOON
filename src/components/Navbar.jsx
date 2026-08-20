@@ -138,13 +138,9 @@ export default function Navbar() {
       <nav className={`navbar-light${scrolled ? ' scrolled' : ''}`}>
         <div className="container">
           <div className="navbar-inner">
-            {/* Logo */}
+            {/* Official Clinic Brand Logo */}
             <a href="#" className="navbar-logo" onClick={(e) => { e.preventDefault(); scrollTo('hero') }}>
-              <div className="navbar-logo-icon">
-                <svg width="22" height="22" viewBox="0 0 64 64" fill="none">
-                  <path d="M32 8C24 8 18 13 18 20c0 4 1.5 7 3 10 1.5 3.5 2 6 2 8 0 3 1.5 5 3 5 2 0 3-2 4-5 .5-1.5 1-3 2-3s1.5 1.5 2 3c1 3 2 5 4 5 1.5 0 3-2 3-5 0-2 .5-4.5 2-8 1.5-3 3-6 3-10 0-7-6-12-14-12z" fill="#ffffff" />
-                </svg>
-              </div>
+              <img src="/logo.png" alt="Shankara Dental Clinic" className="navbar-brand-img" />
               <div className="navbar-logo-text">
                 <span className="navbar-logo-name-light">SHANKARA</span>
                 <span className="navbar-logo-sub-light">Dental Clinic</span>
@@ -227,12 +223,8 @@ export default function Navbar() {
         {/* Top Header inside Mobile Menu */}
         <div className="mobile-menu-header">
           <div className="mobile-menu-brand">
-            <div className="navbar-logo-icon" style={{ width: '32px', height: '32px' }}>
-              <svg width="18" height="18" viewBox="0 0 64 64" fill="none">
-                <path d="M32 8C24 8 18 13 18 20c0 4 1.5 7 3 10 1.5 3.5 2 6 2 8 0 3 1.5 5 3 5 2 0 3-2 4-5 .5-1.5 1-3 2-3s1.5 1.5 2 3c1 3 2 5 4 5 1.5 0 3-2 3-5 0-2 .5-4.5 2-8 1.5-3 3-6 3-10 0-7-6-12-14-12z" fill="#ffffff" />
-              </svg>
-            </div>
-            <span className="navbar-logo-name-light" style={{ fontSize: '15px' }}>SHANKARA DENTAL</span>
+            <img src="/logo.png" alt="Shankara Dental Clinic" className="mobile-brand-img" />
+            <span className="navbar-logo-name-light" style={{ fontSize: '16px' }}>SHANKARA DENTAL</span>
           </div>
 
           <button
