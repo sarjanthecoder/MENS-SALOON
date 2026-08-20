@@ -1,4 +1,4 @@
-export default function TechnologySection() {
+export default function ArtisanalCraftSection() {
   const TOOLS = [
     {
       title: 'Takara Belmont Recliners',

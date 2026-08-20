@@ -1,4 +1,4 @@
-export default function PatientExperience() {
+export default function SalonExperience() {
   const scrollToBooking = () => {
     document.getElementById('appointment')?.scrollIntoView({ behavior: 'smooth' })
   }

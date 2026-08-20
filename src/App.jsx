@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import DoctorSection from './components/DoctorSection'
+import StylistSection from './components/StylistSection'
 import WhyShankara from './components/WhyShankara'
-import TreatmentSection from './components/TreatmentSection'
-import FeaturedSection from './components/FeaturedSection'
-import TechnologySection from './components/TechnologySection'
-import PatientExperience from './components/PatientExperience'
+import ServicesSection from './components/ServicesSection'
+import VIPPackagesSection from './components/VIPPackagesSection'
+import ArtisanalCraftSection from './components/ArtisanalCraftSection'
+import SalonExperience from './components/SalonExperience'
 import Testimonials from './components/Testimonials'
 import Gallery from './components/Gallery'
 import FAQ from './components/FAQ'
@@ -63,12 +63,12 @@ export default function App() {
 
       <main>
         <Hero />
-        <DoctorSection />
+        <StylistSection />
         <WhyShankara />
-        <TreatmentSection />
-        <FeaturedSection />
-        <TechnologySection />
-        <PatientExperience />
+        <ServicesSection />
+        <VIPPackagesSection />
+        <ArtisanalCraftSection />
+        <SalonExperience />
         <Testimonials />
         <Gallery />
         <FAQ />

@@ -1,4 +1,4 @@
-export default function DoctorSection() {
+export default function StylistSection() {
   const scrollTo = (id) => {
     const el = document.getElementById(id)
     if (el) {

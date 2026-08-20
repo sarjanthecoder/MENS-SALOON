@@ -1,4 +1,4 @@
-export default function FeaturedSection() {
+export default function VIPPackagesSection() {
   const PACKAGES = [
     {
       id: 'executive',

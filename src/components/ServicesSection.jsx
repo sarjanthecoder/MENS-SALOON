@@ -1,4 +1,4 @@
-export default function TreatmentSection() {
+export default function ServicesSection() {
   const SERVICES = [
     {
       id: 'haircut',
