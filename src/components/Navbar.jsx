@@ -137,13 +137,7 @@ export default function Navbar() {
             {/* Brand Logo */}
             <a href="#" className="navbar-logo" onClick={(e) => { e.preventDefault(); scrollTo('hero') }}>
               <div className="navbar-logo-emblem">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9" />
-                  <path d="M16 16l6-6" />
-                  <path d="m8 8 6-6" />
-                  <path d="m9 7 8 8" />
-                  <path d="m21 11-8-8" />
-                </svg>
+                <img src="/logo.png" alt="Shankara Salon" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
               </div>
               <div className="navbar-logo-text">
                 <span className="navbar-logo-brand">SHANKARA</span>
@@ -221,11 +215,7 @@ export default function Navbar() {
         <div className="mobile-menu-header">
           <div className="mobile-menu-brand">
             <div className="navbar-logo-emblem" style={{ width: '36px', height: '36px' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="m14 12-8.5 8.5a2.12 2.12 0 1 1-3-3L11 9" />
-                <path d="M16 16l6-6" />
-                <path d="m8 8 6-6" />
-              </svg>
+              <img src="/logo.png" alt="Shankara Salon" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} />
             </div>
             <span className="navbar-logo-brand" style={{ fontSize: '16px' }}>SHANKARA SALON</span>
           </div>
