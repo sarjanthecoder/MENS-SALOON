@@ -32,7 +32,7 @@ export default function DoctorSection() {
               <span className="gold-gradient-text">Uncompromised Distinction.</span>
             </h2>
 
-            <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.75', marginBottom: '18px' }}>
+            <p style={{ color: 'var(--text-body)', fontSize: '16px', lineHeight: '1.75', marginBottom: '18px' }}>
               At Shankara Men&apos;s Salon, grooming is not merely a service—it is a bespoke discipline of facial aesthetics, head shape architecture, and rejuvenating wellness.
             </p>
 

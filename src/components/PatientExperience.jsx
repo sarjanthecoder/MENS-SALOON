@@ -15,7 +15,7 @@ export default function PatientExperience() {
               <span className="gold-gradient-text">Discerning Gentleman.</span>
             </h2>
 
-            <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.75', marginBottom: '24px' }}>
+            <p style={{ color: 'var(--text-body)', fontSize: '16px', lineHeight: '1.75', marginBottom: '24px' }}>
               Step out of the city rush and immerse yourself in an atmosphere of refined tranquility. Our private suites feature soundproof acoustic architecture, ambient lighting, and bespoke leather seating.
             </p>
 
@@ -25,7 +25,7 @@ export default function PatientExperience() {
                   ✓
                 </div>
                 <div>
-                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Zero Waiting Time Guarantee</strong>
+                  <strong style={{ color: 'var(--text-dark)', display: 'block', fontSize: '15px' }}>Zero Waiting Time Guarantee</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Your reserved private suite is prepped and waiting prior to your arrival</span>
                 </div>
               </div>
@@ -35,7 +35,7 @@ export default function PatientExperience() {
                   ✓
                 </div>
                 <div>
-                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Complimentary Beverage Bar</strong>
+                  <strong style={{ color: 'var(--text-dark)', display: 'block', fontSize: '15px' }}>Complimentary Beverage Bar</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Freshly roasted single-origin espresso, gourmet teas, and refreshments</span>
                 </div>
               </div>
@@ -45,7 +45,7 @@ export default function PatientExperience() {
                   ✓
                 </div>
                 <div>
-                  <strong style={{ color: 'var(--white)', display: 'block', fontSize: '15px' }}>Strict Sterilization & Single-Use Blades</strong>
+                  <strong style={{ color: 'var(--text-dark)', display: 'block', fontSize: '15px' }}>Strict Sterilization & Single-Use Blades</strong>
                   <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Medical-grade autoclaved tools and sealed Japanese straight razor blades</span>
                 </div>
               </div>

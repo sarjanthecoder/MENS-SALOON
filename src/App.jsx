@@ -78,7 +78,7 @@ export default function App() {
 
       <Footer />
 
-      {/* Interactive Dental Assistant Chatbot */}
+      {/* Interactive Luxury Salon Assistant Chatbot */}
       <Chatbot />
 
       {/* Floating desktop book button */}

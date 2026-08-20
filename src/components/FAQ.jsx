@@ -29,7 +29,7 @@ export default function FAQ() {
   const toggle = (idx) => setOpenIdx(openIdx === idx ? null : idx)
 
   return (
-    <section className="why-luxe-section" style={{ background: 'var(--surface-1)' }} id="faq">
+    <section className="why-luxe-section" style={{ background: 'var(--bg-ivory)', borderTop: '1px solid var(--gold-border-light)' }} id="faq">
       <div className="container">
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto' }} className="reveal">
           <span className="section-eyebrow">Frequently Asked Questions</span>
@@ -50,20 +50,22 @@ export default function FAQ() {
                   padding: '24px 28px',
                   cursor: 'pointer',
                   borderRadius: '18px',
+                  background: 'var(--white)',
+                  boxShadow: 'var(--shadow-card)',
                 }}
                 onClick={() => toggle(idx)}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: '700', color: 'var(--white)' }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: '700', color: 'var(--text-dark)' }}>
                     {faq.q}
                   </h3>
-                  <span style={{ fontSize: '20px', color: 'var(--gold-primary)', fontWeight: '800', transition: 'transform 0.3s', transform: isOpen ? 'rotate(45deg)' : 'none' }}>
+                  <span style={{ fontSize: '22px', color: 'var(--gold-primary)', fontWeight: '800', transition: 'transform 0.3s', transform: isOpen ? 'rotate(45deg)' : 'none', flexShrink: 0 }}>
                     +
                   </span>
                 </div>
 
                 {isOpen && (
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.7', marginTop: '14px', borderTop: '1px solid var(--gold-border-light)', paddingTop: '14px' }}>
+                  <p style={{ color: 'var(--text-body)', fontSize: '15px', lineHeight: '1.7', marginTop: '14px', borderTop: '1px solid var(--gold-border-light)', paddingTop: '14px' }}>
                     {faq.a}
                   </p>
                 )}
