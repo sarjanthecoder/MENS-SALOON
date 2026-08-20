@@ -23,7 +23,7 @@ export default function Hero() {
           {/* Left Text Card */}
           <div className="hero-left-luxe reveal">
             <span className="section-eyebrow">
-              ★ Dharmapuri&apos;s Premier Men&apos;s Grooming Lounge
+              ★ Premier Luxury Men&apos;s Grooming Lounge
             </span>
 
             <h1 className="hero-title-luxe">
@@ -32,7 +32,7 @@ export default function Hero() {
             </h1>
 
             <p className="hero-sub-luxe">
-              Precision haircuts, artisanal hot towel straight-razor shaves, Kérastase scalp therapies, and 24K gold facials tailored for distinguished gentlemen.
+              Precision scissor sculpting, artisanal hot towel straight-razor detailing, Kérastase scalp therapies, and 24K gold facials tailored for distinguished gentlemen.
             </p>
 
             <div className="hero-actions-luxe">
@@ -81,20 +81,20 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div>
-                  <strong style={{ color: 'var(--white)', fontSize: '13px', display: 'block' }}>Master Hair Artisan</strong>
-                  <span style={{ color: 'var(--gold-primary)', fontSize: '11px', fontWeight: '700' }}>14+ Years International Mastery</span>
+                  <strong style={{ color: 'var(--text-dark)', fontSize: '13px', display: 'block' }}>Master Hair Artisan</strong>
+                  <span style={{ color: 'var(--gold-deep)', fontSize: '11px', fontWeight: '800' }}>14+ Years International Mastery</span>
                 </div>
               </div>
 
               {/* Floating Private Suite Card */}
               <div className="hero-float-card-gold">
-                <div style={{ fontSize: '11px', fontWeight: '800', color: 'var(--gold-primary)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+                <div style={{ fontSize: '11px', fontWeight: '800', color: 'var(--gold-deep)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
                   The Gentleman&apos;s Suite
                 </div>
-                <div style={{ fontSize: '15px', fontWeight: '700', color: 'var(--white)', marginTop: '2px' }}>
+                <div style={{ fontSize: '15px', fontWeight: '700', color: 'var(--text-dark)', marginTop: '2px' }}>
                   Takara Belmont Recliners
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Private Sound-Proof Cabins</div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Private Soundproof Cabins</div>
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ const KNOWLEDGE_BASE = {
     { name: 'Grand Groom Royale', price: '₹4,999' },
   ],
   timing: 'Monday – Sunday: 8:30 AM – 9:30 PM (Private VIP suites by prior reservation)',
-  location: '#19A, 2nd Floor, Thirupathi Complex, Pennagaram Road, 4 Roads, Dharmapuri',
+  location: '#42, 2nd Level, The Grand Promenade, Luxury Boulevard, Metro City',
 }
 
 export default function Chatbot() {
@@ -135,10 +135,10 @@ export default function Chatbot() {
         style={{
           position: 'fixed', bottom: '28px', left: '28px', zIndex: 996,
           width: '56px', height: '56px', borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--gold-primary), var(--gold-deep))',
-          border: '2px solid var(--gold-light)',
-          color: 'var(--obsidian)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 8px 30px rgba(212, 175, 55, 0.45)', cursor: 'pointer',
+          background: 'linear-gradient(135deg, var(--gold-light), var(--gold-primary))',
+          border: '2px solid var(--white)',
+          color: 'var(--white)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 8px 30px rgba(184, 134, 11, 0.45)', cursor: 'pointer',
         }}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3">
@@ -152,19 +152,19 @@ export default function Chatbot() {
           style={{
             position: 'fixed', bottom: '96px', left: '28px', zIndex: 999,
             width: '360px', maxWidth: 'calc(100vw - 40px)', height: '480px',
-            background: 'var(--surface-card)', border: '1px solid var(--gold-border)',
+            background: 'var(--white)', border: '1.5px solid var(--gold-border)',
             borderRadius: '24px', display: 'flex', flexDirection: 'column',
-            boxShadow: '0 24px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.2)',
+            boxShadow: '0 24px 60px rgba(15, 19, 26, 0.15), 0 0 30px rgba(184, 134, 11, 0.15)',
             overflow: 'hidden',
           }}
         >
           {/* Header */}
-          <div style={{ background: 'var(--surface-1)', padding: '16px 20px', borderBottom: '1px solid var(--gold-border-light)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ background: 'var(--bg-ivory)', padding: '16px 20px', borderBottom: '1.5px solid var(--gold-border-light)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--gold-primary)', boxShadow: '0 0 8px var(--gold-primary)' }} />
               <div>
-                <strong style={{ color: 'var(--white)', fontSize: '14px', display: 'block' }}>Shankara AI Stylist</strong>
-                <span style={{ color: 'var(--gold-primary)', fontSize: '11px' }}>Luxury Grooming Concierge</span>
+                <strong style={{ color: 'var(--text-dark)', fontSize: '14px', display: 'block' }}>Shankara AI Stylist</strong>
+                <span style={{ color: 'var(--gold-deep)', fontSize: '11px', fontWeight: '700' }}>Luxury Grooming Concierge</span>
               </div>
             </div>
             <button
@@ -181,21 +181,21 @@ export default function Chatbot() {
               <div key={m.id} style={{ alignSelf: m.sender === 'user' ? 'flex-end' : 'flex-start', maxWidth: '85%' }}>
                 <div
                   style={{
-                    background: m.sender === 'user' ? 'linear-gradient(135deg, var(--gold-primary), var(--gold-deep))' : 'var(--surface-1)',
-                    color: m.sender === 'user' ? 'var(--obsidian)' : 'var(--text-primary)',
+                    background: m.sender === 'user' ? 'linear-gradient(135deg, var(--gold-light), var(--gold-primary))' : 'var(--bg-ivory)',
+                    color: m.sender === 'user' ? 'var(--white)' : 'var(--text-dark)',
                     padding: '12px 16px', borderRadius: '16px', fontSize: '13.5px', lineHeight: '1.55',
-                    border: m.sender === 'user' ? 'none' : '1px solid var(--gold-border-light)',
+                    border: m.sender === 'user' ? 'none' : '1.5px solid var(--gold-border-light)',
                     fontWeight: m.sender === 'user' ? '700' : '400',
                   }}
                 >
                   {m.text && <p>{m.text}</p>}
-                  {m.title && <strong style={{ display: 'block', color: 'var(--gold-light)', marginBottom: '6px' }}>{m.title}</strong>}
+                  {m.title && <strong style={{ display: 'block', color: 'var(--gold-deep)', marginBottom: '6px' }}>{m.title}</strong>}
                   {m.items && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '6px' }}>
                       {m.items.map((it, i) => (
                         <div key={i} style={{ fontSize: '12px', display: 'flex', justifyContent: 'space-between' }}>
                           <span>{it.name}</span>
-                          <strong style={{ color: 'var(--gold-primary)' }}>{it.price}</strong>
+                          <strong style={{ color: 'var(--gold-deep)' }}>{it.price}</strong>
                         </div>
                       ))}
                     </div>
@@ -204,7 +204,7 @@ export default function Chatbot() {
               </div>
             ))}
             {isTyping && (
-              <div style={{ alignSelf: 'flex-start', color: 'var(--gold-primary)', fontSize: '12px', fontStyle: 'italic' }}>
+              <div style={{ alignSelf: 'flex-start', color: 'var(--gold-deep)', fontSize: '12px', fontStyle: 'italic' }}>
                 Stylist is typing...
               </div>
             )}
@@ -212,39 +212,39 @@ export default function Chatbot() {
           </div>
 
           {/* Quick Topics */}
-          <div style={{ padding: '8px 14px', background: 'var(--surface-1)', display: 'flex', gap: '6px', overflowX: 'auto', borderTop: '1px solid var(--gold-border-light)' }}>
+          <div style={{ padding: '8px 14px', background: 'var(--bg-ivory)', display: 'flex', gap: '6px', overflowX: 'auto', borderTop: '1.5px solid var(--gold-border-light)' }}>
             <button
               onClick={() => handleTopicClick('services', 'What are your signature services?')}
-              style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--gold-border)', color: 'var(--gold-light)', fontSize: '11px', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+              style={{ background: 'var(--white)', border: '1px solid var(--gold-border)', color: 'var(--gold-deep)', fontSize: '11px', fontWeight: '700', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
             >
               Services Menu
             </button>
             <button
               onClick={() => handleTopicClick('wedding', 'Tell me about Groom wedding packages')}
-              style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--gold-border)', color: 'var(--gold-light)', fontSize: '11px', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+              style={{ background: 'var(--white)', border: '1px solid var(--gold-border)', color: 'var(--gold-deep)', fontSize: '11px', fontWeight: '700', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
             >
               Wedding Packages
             </button>
             <button
               onClick={() => handleTopicClick('book', 'How can I reserve a VIP slot?')}
-              style={{ background: 'rgba(212, 175, 55, 0.1)', border: '1px solid var(--gold-border)', color: 'var(--gold-light)', fontSize: '11px', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
+              style={{ background: 'var(--white)', border: '1px solid var(--gold-border)', color: 'var(--gold-deep)', fontSize: '11px', fontWeight: '700', padding: '5px 10px', borderRadius: '100px', cursor: 'pointer', whiteSpace: 'nowrap' }}
             >
               Book Slot
             </button>
           </div>
 
           {/* Input Form */}
-          <form onSubmit={handleSend} style={{ padding: '12px', display: 'flex', gap: '8px', background: 'var(--surface-card)' }}>
+          <form onSubmit={handleSend} style={{ padding: '12px', display: 'flex', gap: '8px', background: 'var(--white)' }}>
             <input
               type="text"
               placeholder="Ask about haircuts, styling..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              style={{ flex: 1, background: 'var(--surface-1)', border: '1px solid var(--gold-border-light)', borderRadius: '100px', padding: '10px 16px', color: 'var(--white)', fontSize: '13px', outline: 'none' }}
+              style={{ flex: 1, background: 'var(--bg-ivory)', border: '1.5px solid var(--gold-border-light)', borderRadius: '100px', padding: '10px 16px', color: 'var(--text-dark)', fontSize: '13px', outline: 'none' }}
             />
             <button
               type="submit"
-              style={{ background: 'var(--gold-primary)', border: 'none', width: '38px', height: '38px', borderRadius: '50%', color: 'var(--obsidian)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ background: 'linear-gradient(135deg, var(--gold-light), var(--gold-primary))', border: 'none', width: '38px', height: '38px', borderRadius: '50%', color: 'var(--white)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               ➤
             </button>
