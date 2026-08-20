@@ -72,12 +72,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom bar with Terms of Clinical Service prominently positioned */}
         <div className="footer-bottom">
-          <span>© 2026 Shankara Dental Clinic. All clinical rights reserved.</span>
           <div className="footer-legal-links">
-            <a href="#appointment" onClick={(e) => { e.preventDefault(); scrollTo('appointment') }}>Terms of Clinical Service</a>
+            <a href="#appointment" onClick={(e) => { e.preventDefault(); scrollTo('appointment') }}>
+              Terms of Clinical Service
+            </a>
           </div>
+          <span className="footer-copy">© 2026 Shankara Dental Clinic. All clinical rights reserved.</span>
         </div>
       </div>
     </footer>

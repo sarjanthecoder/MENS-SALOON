@@ -546,6 +546,7 @@ body {
 .hero-badge-text-light span { display: block; font-size: 10.5px; font-weight: 600; color: var(--gray-600); }
 
 @media (max-width: 1024px) {
+  .hero-scroll-light { display: none !important; }
   .hero-inner-light {
     display: flex;
     flex-direction: column-reverse;
@@ -1756,14 +1757,32 @@ body {
 
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .footer-bottom { padding-right: 0; }
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding-right: 0;
+    margin-top: 10px;
+    padding-bottom: 24px;
+  }
+  .footer-legal-links { margin-bottom: 4px; }
+  .floating-book { display: none !important; }
 }
 @media (max-width: 600px) {
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding-right: 0; }
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+    padding-right: 0;
+  }
+  .floating-book { display: none !important; }
 }
 
-/* ─── FLOATING BTN ────────────────────────────── */
+/* ─── FLOATING BTN (DESKTOP ONLY) ─────────────── */
 .floating-book {
   position: fixed; right: 24px; bottom: 36px; z-index: 997;
   display: flex; align-items: center; gap: 8px; padding: 14px 22px;
@@ -1774,6 +1793,7 @@ body {
   transition: var(--transition); animation: pulseGlow 3s ease-in-out 2s infinite;
 }
 .floating-book:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(14,165,233,0.65); }
+@media (max-width: 1024px) { .floating-book { display: none !important; } }
 /* ─── HARDWARE ACCELERATION & SMOOTHNESS ─────── */
 *, *::before, *::after {
   -webkit-font-smoothing: antialiased;
