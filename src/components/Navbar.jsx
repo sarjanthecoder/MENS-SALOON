@@ -34,6 +34,18 @@ export default function Navbar() {
   const navListRef = useRef(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 })
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileOpen])
+
   // Live Scroll Spy: High-Performance requestAnimationFrame Scroll Spy
   useEffect(() => {
     let ticking = false
@@ -101,7 +113,6 @@ export default function Navbar() {
         opacity: 1,
       })
     } else {
-      // Hide gliding pill when in appointment section (as CTA button is active)
       setIndicatorStyle(prev => ({ ...prev, opacity: 0 }))
     }
   }, [activeSection, scrolled])
@@ -193,11 +204,12 @@ export default function Navbar() {
               </svg>
             </a>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile Hamburger Button */}
             <button
+              type="button"
               className="navbar-hamburger-light"
               onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
+              aria-label="Open navigation menu"
             >
               <span /><span /><span />
             </button>
@@ -205,36 +217,75 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Fullscreen Menu */}
-      <div className={`mobile-menu${mobileOpen ? ' open' : ''}`} role="dialog" aria-modal="true">
-        <button className="mobile-menu-close" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
-        {NAV_ITEMS.map((item) => {
-          const isActive = activeSection === item.id
-          return (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-              onClick={(e) => {
-                e.preventDefault()
-                scrollTo(item.id)
-              }}
-            >
-              {isActive && <span className="mobile-active-indicator" />}
-              <span>{item.label}</span>
-            </a>
-          )
-        })}
-        <a
-          href="#appointment"
-          className={`mobile-cta-btn ${activeSection === 'appointment' ? 'active' : ''}`}
-          onClick={(e) => {
-            e.preventDefault()
-            scrollTo('appointment')
-          }}
-        >
-          Book Appointment →
-        </a>
+      {/* Mobile Fullscreen Menu Drawer */}
+      <div
+        className={`mobile-menu${mobileOpen ? ' open' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation"
+      >
+        {/* Top Header inside Mobile Menu */}
+        <div className="mobile-menu-header">
+          <div className="mobile-menu-brand">
+            <div className="navbar-logo-icon" style={{ width: '32px', height: '32px' }}>
+              <svg width="18" height="18" viewBox="0 0 64 64" fill="none">
+                <path d="M32 8C24 8 18 13 18 20c0 4 1.5 7 3 10 1.5 3.5 2 6 2 8 0 3 1.5 5 3 5 2 0 3-2 4-5 .5-1.5 1-3 2-3s1.5 1.5 2 3c1 3 2 5 4 5 1.5 0 3-2 3-5 0-2 .5-4.5 2-8 1.5-3 3-6 3-10 0-7-6-12-14-12z" fill="#ffffff" />
+              </svg>
+            </div>
+            <span className="navbar-logo-name-light" style={{ fontSize: '15px' }}>SHANKARA DENTAL</span>
+          </div>
+
+          <button
+            type="button"
+            className="mobile-menu-close"
+            onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Links List */}
+        <div className="mobile-menu-body">
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id
+            return (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`mobile-nav-link ${isActive ? 'active' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollTo(item.id)
+                }}
+              >
+                {isActive && <span className="mobile-active-indicator" />}
+                <span>{item.label}</span>
+              </a>
+            )
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mobile-menu-footer">
+          <a
+            href="#appointment"
+            className={`mobile-cta-btn ${activeSection === 'appointment' ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault()
+              scrollTo('appointment')
+            }}
+          >
+            <span>Book Appointment</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </>
   )
