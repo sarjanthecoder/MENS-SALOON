@@ -80,6 +80,18 @@ body {
   background-clip: text;
 }
 
+/* ─── IMAGE & MEDIA PROTECTION ───────────────── */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none; /* Disables iOS long-press save menu */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 /* ─── SCROLL REVEAL ──────────────────────────── */
 .reveal {
   opacity: 1;

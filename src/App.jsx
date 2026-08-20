@@ -17,6 +17,26 @@ import Footer from './components/Footer'
 import Chatbot from './components/Chatbot'
 
 export default function App() {
+  // Disable Right-Click and Image Dragging (Content & Media Protection)
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      e.preventDefault()
+    }
+    const handleDragStart = (e) => {
+      if (e.target.tagName === 'IMG' || e.target.closest('img')) {
+        e.preventDefault()
+      }
+    }
+
+    document.addEventListener('contextmenu', handleContextMenu)
+    document.addEventListener('dragstart', handleDragStart)
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu)
+      document.removeEventListener('dragstart', handleDragStart)
+    }
+  }, [])
+
   // Ultra-Smooth Hardware-Accelerated Scroll Reveal Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
