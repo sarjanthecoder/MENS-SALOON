@@ -34,20 +34,25 @@ export default function Navbar() {
   const navListRef = useRef(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 })
 
-  // Live Scroll Spy: Track which section is in viewport with accurate boundary detection
+  // Live Scroll Spy: High-Performance requestAnimationFrame Scroll Spy
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40)
+    let ticking = false
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY
+      setScrolled(scrollY > 40)
 
       // If at top
-      if (window.scrollY < 180) {
+      if (scrollY < 180) {
         setActiveSection('hero')
+        ticking = false
         return
       }
 
       // If near bottom of page, activate contact
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120) {
+      if (window.innerHeight + scrollY >= document.documentElement.scrollHeight - 120) {
         setActiveSection('contact')
+        ticking = false
         return
       }
 
@@ -65,15 +70,22 @@ export default function Navbar() {
         }
       }
 
-      // Map auxiliary sections (e.g., 'experience' -> 'technology', 'faq' -> 'gallery', 'appointment' -> 'appointment')
       if (currentSection === 'experience') currentSection = 'technology'
       if (currentSection === 'faq') currentSection = 'gallery'
 
       setActiveSection(currentSection)
+      ticking = false
+    }
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState)
+        ticking = true
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // initial check
+    updateScrollState() // initial check
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
